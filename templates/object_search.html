@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Поиск объектов</h1>
+    <h3>(всего объектов: {{ objects|length }})</h3>
+    <form method='GET'>
+        {{ filter.form }}
+        <!-- {% for field in filter.form %}
+        <div class="row">
+            {{field.label_tag}}
+            <div>{{field}}</div>
+            {% if field.errors%}
+            <div class="error">{{field.errors}}</div>
+            {% endif %}
+        </div>
+        {% endfor %} -->
+        <input type='submit' value='Найти'>
+    </form>
+    <table>
+    
+        <thead>
+            <th>ID объекта</th>
+            <th>Округ</th>
+            <th>Район</th>
+            <th>Адрес</th>
+            <th>Тип объекта</th>
+            <th>Состояние объекта</th>
+            <th>Площадь объекта</th>
+            <th>Собственник</th>
+            <th>Фактический пользователь</th>
+            <th>Фото/видео</th>
+        </thead>
+    
+        {% for obj in filter.qs %}
+        <tr>
+            <td><a href="{{ obj.get_absolute_url }}">{{ obj.pk }}</a></td>
+            <td>{{ obj.division }}</td>
+            <td>{{ obj.district }}</td>
+            <td>{{ obj.address }}</td>
+            <td>{{ obj.obj_type }}</td>
+            <td>{{ obj.condition }}</td>
+            <td>{{ obj.area }}</td>
+            <td>{{ obj.owner }}</td>
+            <td>{{ obj.current_holder }}</td>
+            <td>{{ obj.media_files }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a class="nav-link" href="{% url 'objects_list' %}">все объекты</a>
+</body>
+</html>
+
+
