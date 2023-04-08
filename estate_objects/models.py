@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.urls import reverse
 
 from estate_objects.config import *
 
@@ -17,6 +18,9 @@ class EstateObject(models.Model):
 
     def __str__(self):
         return f'Объект №{self.pk}'
+
+    def get_absolute_url(self):
+        return reverse('object_details', kwargs={'pk' : self.pk})
 
 
 class AdditionalFieldsList(models.Model):
