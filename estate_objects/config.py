@@ -8,6 +8,8 @@ south_west = 'SW'
 west = 'W'
 north_west = 'NW'
 zelenogradskiy = 'Z'
+troitskiy = 'T'
+novomoskovskiy = 'N'
 
 DIVISIONS = [
     (central, 'Центральный'),
@@ -20,6 +22,8 @@ DIVISIONS = [
     (west, 'Западный'),
     (north_west, 'Северо-Западный'),
     (zelenogradskiy, 'Зеленоградский'),
+    (troitskiy, 'Троицкий'),
+    (novomoskovskiy, 'Новомосковский'),
 ]
 
 DISTRICTS = [
