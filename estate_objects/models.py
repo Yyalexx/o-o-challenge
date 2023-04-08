@@ -20,7 +20,7 @@ class EstateObject(models.Model):
         return f'Объект №{self.pk}'
 
     def get_absolute_url(self):
-        return reverse('object_details', kwargs={'pk' : self.pk})
+        return reverse('object_details', kwargs={'pk': self.pk})
 
 
 class AdditionalFieldsList(models.Model):

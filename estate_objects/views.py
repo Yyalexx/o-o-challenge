@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .models import EstateObject
@@ -29,8 +30,8 @@ class ObjectUpdate(UpdateView):
     form_class = AddObjectForm
 
     def get_object(self, **kwargs):
-        id = self.kwargs.get('pk')
-        return EstateObject.objects.get(pk=id)
+        obj_id = self.kwargs.get('pk')
+        return get_object_or_404(EstateObject, pk=obj_id)
 
 
 class ObjectDelete(DeleteView):
