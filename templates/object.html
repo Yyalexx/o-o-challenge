@@ -1,53 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Информация об объекте {{ object.pk }}</title>
-</head>
-<body>
-    <h2>Карточка объекта №{{ object.pk }}</h2>
+{% extends 'base.html' %}
 
-    <h3>Основная информация</h3>
-    <button><a href="{% url 'object_update' object.id %}">Редактировать</a></button>
-    <button><a href="{% url 'object_delete' object.id %}">Удалить</a></button>
+{% block title %}
+Информация об объекте {{ object.pk }}
+{% endblock title %}
 
-    <p><b>Округ:</b> {{ object.get_division_display }}</p>
-    <p><b>Район:</b> {{ object.get_district_display }}</p>
-    <p><b>Адрес:</b> {{ object.address }}</p>
-    <p><b>Тип объекта:</b> {{ object.get_obj_type_display }}</p>
-    <p><b>Состояние объекта:</b> {{ object.get_condition_display }}</p>
-    <p><b>Площадь объекта:</b> {{ object.area }}</p>
-    <p><b>Собственник:</b> {{ object.owner }}</p>
-    <p><b>Фактический пользователь:</b> {{ object.current_holder }}</p>
-    <p><b>Фото/видео:</b> {{ object.media_files }}</p>
+{% block content %}
 
-    <hr>
+<h2>Карточка объекта №{{ object.pk }}</h2>
 
-        <h3>Дополнительная информация</h3>
-        <button><a href="{% url 'object_update' object.id %}">Редактировать</a></button>
-        <button><a href="{% url 'object_update' object.id %}">Добавить поле</a></button>
+<a class="btn btn-primary" href="{% url 'object_update' object.id %}">Редактировать</a>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delModal">Удалить</button>
 
-        {% for add_field in additional_fields %}
-            <p><b>{{ add_field.field_id.field_name }}:</b> {{ add_field.str_value }}</p>
-        {% endfor %}
-
-    <hr>
-
-        <h3>Решение по объекту</h3>
-        <a href="{% url 'solution_update' object.id %}">Редактировать</a>
-        <button>Скачать протокол</button>
-
-        <p><b>Формулировка:</b> {{ solution.description }}</p>
-        <p><b>Срок исполнения:</b> {{ solution.complete_before }}</p>
-        <p><b>Ответственный:</b> {{ solution.responsible }}</p>
-        <p><b>Дата проведения заседания:</b> {{ solution.discussion_date }}</p>
-        <p><b>Комментарий:</b> {{ solution.comment }}</p>
-
-    <hr>
-
-    <div class="">
-        <a class="nav-link" href="{% url 'objects_list' %}">все объекты</a>
-
+<h3>Основная информация</h3>
+<div class="row mt-3">
+    <div class="col-4 border  border-primary">
+        <img src="{{ object.media_files }}" alt="">
     </div>
-</body>
-</html>
+    <div class="col-8">
+        <p><b>Округ:</b> {{ object.get_division_display }}</p>
+        <p><b>Район:</b> {{ object.get_district_display }}</p>
+        <p><b>Адрес:</b> {{ object.address }}</p>
+        <p><b>Тип объекта:</b> {{ object.get_obj_type_display }}</p>
+        <p><b>Состояние объекта:</b> {{ object.get_condition_display }}</p>
+        <p><b>Площадь объекта:</b> {{ object.area }}</p>
+        <p><b>Собственник:</b> {{ object.owner }}</p>
+        <p><b>Фактический пользователь:</b> {{ object.current_holder }}</p>
+        <p><b>Фото/видео:</b> {{ object.media_files }}</p>
+    </div>
+</div>
+
+<hr>
+
+<h3>Дополнительная информация</h3>
+<a class="btn btn-primary" href="{% url 'object_update' object.id %}">Редактировать</a>
+<a class="btn btn-primary" href="{% url 'object_update' object.id %}">Добавить поле</a>
+
+{% for add_field in additional_fields %}
+<p><b>{{ add_field.field_id.field_name }}:</b> {{ add_field.str_value }}</p>
+{% endfor %}
+
+<hr>
+
+<h3>Решение по объекту</h3>
+<a class="btn btn-primary" href="{% url 'solution_update' object.id %}">Редактировать</a>
+<button class="btn btn-primary">Скачать протокол</button>
+
+<p><b>Формулировка:</b> {{ solution.description }}</p>
+<p><b>Срок исполнения:</b> {{ solution.complete_before }}</p>
+<p><b>Ответственный:</b> {{ solution.responsible }}</p>
+<p><b>Дата проведения заседания:</b> {{ solution.discussion_date }}</p>
+<p><b>Комментарий:</b> {{ solution.comment }}</p>
+
+<hr>
+
+<div class="">
+    <a class="nav-link" href="{% url 'objects_list' %}">все объекты</a>
+
+</div>
+
+
+
+
+<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Внимание</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                Вы действительно хотите удалить этот объект?
+            </div>
+            <div class="modal-footer">
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <input class="btn btn-danger" type="submit" value="Удалить">
+                </form>
+                <!-- <button type="button" class="btn btn-danger">Удалить</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
