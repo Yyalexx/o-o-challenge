@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+        <style>
+            .myfield {
+                border: 3px solid #8d1a1a;
+                border-radius: 5px;
+                height: 25px;
+                width: 200px;
+                margin: 10px 10px 10px 0;
+            }
+        </style>
+
+</head>
+<body>
+    <h1>Корректировка решения по объекту №{{ solution.id }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Сохранить">
+    </form>
+</body>
+</html>

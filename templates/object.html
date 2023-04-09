@@ -5,20 +5,46 @@
     <title>Информация об объекте {{ object.pk }}</title>
 </head>
 <body>
-    <h2>Карточка объекта</h2>
-    <p>{{ object.pk }}</p>
-    <p>{{ object.get_division_display }}</p>
-    <p>{{ object.get_district_display }}</p>
-    <p>{{ object.address }}</p>
-    <p>{{ object.get_obj_type_display }}</p>
-    <p>{{ object.get_condition_display }}</p>
-    <p>{{ object.area }}</p>
-    <p>{{ object.owner }}</p>
-    <p>{{ object.current_holder }}</p>
-    <p>{{ object.media_files }}</p>
+    <h2>Карточка объекта №{{ object.pk }}</h2>
 
-    <a href="{% url 'object_update' object.id %}">Редактировать</a>
-    <a href="{% url 'object_delete' object.id %}">Удалить</a>
+    <h3>Основная информация</h3>
+    <button><a href="{% url 'object_update' object.id %}">Редактировать</a></button>
+    <button><a href="{% url 'object_delete' object.id %}">Удалить</a></button>
+
+    <p><b>Округ:</b> {{ object.get_division_display }}</p>
+    <p><b>Район:</b> {{ object.get_district_display }}</p>
+    <p><b>Адрес:</b> {{ object.address }}</p>
+    <p><b>Тип объекта:</b> {{ object.get_obj_type_display }}</p>
+    <p><b>Состояние объекта:</b> {{ object.get_condition_display }}</p>
+    <p><b>Площадь объекта:</b> {{ object.area }}</p>
+    <p><b>Собственник:</b> {{ object.owner }}</p>
+    <p><b>Фактический пользователь:</b> {{ object.current_holder }}</p>
+    <p><b>Фото/видео:</b> {{ object.media_files }}</p>
+
+    <hr>
+
+        <h3>Дополнительная информация</h3>
+        <button><a href="{% url 'object_update' object.id %}">Редактировать</a></button>
+        <button><a href="{% url 'object_update' object.id %}">Добавить поле</a></button>
+
+        {% for add_field in additional_fields %}
+            <p><b>{{ add_field.field_id.field_name }}:</b> {{ add_field.str_value }}</p>
+        {% endfor %}
+
+    <hr>
+
+        <h3>Решение по объекту</h3>
+        <a href="{% url 'solution_update' object.id %}">Редактировать</a>
+        <button>Скачать протокол</button>
+
+        <p><b>Формулировка:</b> {{ solution.description }}</p>
+        <p><b>Срок исполнения:</b> {{ solution.complete_before }}</p>
+        <p><b>Ответственный:</b> {{ solution.responsible }}</p>
+        <p><b>Дата проведения заседания:</b> {{ solution.discussion_date }}</p>
+        <p><b>Комментарий:</b> {{ solution.comment }}</p>
+
+    <hr>
+
     <div class="">
         <a class="nav-link" href="{% url 'objects_list' %}">все объекты</a>
 

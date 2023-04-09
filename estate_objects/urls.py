@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from estate_objects.views import ObjectsList, ObjectSearch, ObjectDetails, ObjectCreate, ObjectUpdate, ObjectDelete
+from estate_objects.views import *
 
 urlpatterns = [
     path('', ObjectsList.as_view(), name='objects_list'),
@@ -24,5 +24,6 @@ urlpatterns = [
     path('add/', ObjectCreate.as_view(), name='object_create'),
     path('<int:pk>/edit/', ObjectUpdate.as_view(), name='object_update'),
     path('<int:pk>/delete/', ObjectDelete.as_view(), name='object_delete'),
+    path('solutions/<int:pk>/edit/', SolutionUpdate.as_view(), name='solution_update')
 
 ]
