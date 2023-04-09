@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Список объектов</title>
-        
-</head>
+{% block title %}
+Список объектов
+{% endblock title %}
 
-<body>
+{% block content %}
     <h2>Список объектов</h2>
     <h3>(всего объектов: {{ objects|length }})</h3>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>ID объекта</th>
@@ -44,6 +41,4 @@
     </table>
     <a class="nav-link" href="{% url 'object_create' %}">Новая карточка объекта</a>
     <a class="nav-link" href="{% url 'search' %}">Поиск объектов</a>
-</body>
-
-</html>
+{% endblock content %}
