@@ -24,7 +24,7 @@ class ObjectDetails(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["solution"] = Solution.objects.filter(pk=self.kwargs.get('pk')).first()
-        context["additional_fields"] = AdditionalFields.objects.filter(pk=self.kwargs.get('pk'))
+        context["additional_fields"] = AdditionalFields.objects.filter(obj_id=self.kwargs.get('pk'))
         return context
 
 
@@ -63,7 +63,6 @@ class ObjectSearch(ListView):
 class SolutionUpdate(UpdateView):
     template_name = 'solution_create.html'
     form_class = SolutionForm
-    # success_url = redirect(f'{settings.SITE_URL}/news/{form_class.obj_id}')
 
     def get_object(self, **kwargs):
         obj_id = self.kwargs.get('pk')
