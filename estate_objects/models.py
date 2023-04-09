@@ -35,3 +35,12 @@ class AdditionalFields(models.Model):
     str_value = models.CharField(max_length=256, null=True)
     date_value = models.DateTimeField(null=True)
     binary_value = models.FileField(upload_to='additional_files/', null=True)
+
+
+class Solution(models.Model):
+    obj_id = models.ForeignKey(EstateObject, on_delete=models.CASCADE, verbose_name='ID объекта')
+    description = models.TextField(null=True, verbose_name='Формулировка')
+    complete_before = models.DateTimeField(null=True, verbose_name='Срок исполнения')
+    responsible = models.CharField(max_length=128, null=True, verbose_name='Ответственный')
+    discussion_date = models.DateTimeField(null=True, verbose_name='Дата проведения заседания')
+    comment = models.TextField(verbose_name='Комментарий')
