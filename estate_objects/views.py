@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from .models import EstateObject
 from .forms import AddObjectForm
+from .filters import ObjectFilter
 
 
 # Create your views here.
@@ -38,3 +39,15 @@ class ObjectDelete(DeleteView):
     template_name = 'object_delete.html'
     queryset = EstateObject.objects.all()
     success_url = reverse_lazy('objects_list')
+
+
+class ObjectSearch(ListView):
+    model = EstateObject
+    template_name = 'object_search.html'
+    context_object_name = 'objects'
+    ordering = ['-pk']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = ObjectFilter(self.request.GET, queryset=self.get_queryset())
+        return context
