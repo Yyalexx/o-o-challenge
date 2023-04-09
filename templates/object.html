@@ -9,9 +9,7 @@
 <h2>Карточка объекта №{{ object.pk }}</h2>
 
 <a class="btn btn-primary" href="{% url 'object_update' object.id %}">Редактировать</a>
-<a href="{% url 'object_delete' object.id %}">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delModal">Удалить</button>
-</a>
+<a class="btn btn-primary" href="{% url 'object_delete' object.id %}">Удалить</a>
 
 <h3>Основная информация</h3>
 <div class="row mt-3">
@@ -63,7 +61,7 @@
 
 
 
-<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -79,11 +77,10 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
                     <input class="btn btn-danger" type="submit" value="Удалить">
                 </form>
-                <!-- <button type="button" class="btn btn-danger">Удалить</button> -->
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 {% endblock %}

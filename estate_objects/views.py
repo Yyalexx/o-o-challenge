@@ -14,6 +14,7 @@ class ObjectsList(ListView):
     model = EstateObject
     template_name = 'objects.html'
     context_object_name = 'objects'
+    paginate_by = 5
 
 
 class ObjectDetails(DetailView):
@@ -45,7 +46,7 @@ class ObjectUpdate(UpdateView):
 class ObjectDelete(DeleteView):
     template_name = 'object_delete.html'
     queryset = EstateObject.objects.all()
-    success_url = f'{settings.SITE_URL}/estate_objects/'
+    success_url = reverse_lazy('objects_list')
 
 
 class ObjectSearch(ListView):

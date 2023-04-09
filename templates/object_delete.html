@@ -1,17 +1,34 @@
-<h2>Вы действительно хотите удалить эту карточку объекта?</h2>
+{% extends 'base.html' %}
 
-    <p>{{ object.pk }}</p>
-    <p>{{ object.division }}</p>
-    <p>{{ object.district }}</p>
-    <p>{{ object.address }}</p>
-    <p>{{ object.obj_type }}</p>
-    <p>{{ object.condition }}</p>
-    <p>{{ object.area }}</p>
-    <p>{{ object.owner }}</p>
-    <p>{{ object.current_holder }}</p>
-    <p>{{ object.media_files }}</p>
+{% block title %}
+Поиск объектов
+{% endblock title %}
+
+
+{% block content %}
+
+<h2>Вы действительно хотите удалить эту карточку объекта?</h2>
+<div class="row mt-3 mb-3">
+    <div class="col-4 border  border-primary">
+        <img src="{{ object.media_files }}" alt="">
+    </div>
+    <div class="col-8">
+        <p><b>Округ:</b> {{ object.get_division_display }}</p>
+        <p><b>Район:</b> {{ object.get_district_display }}</p>
+        <p><b>Адрес:</b> {{ object.address }}</p>
+        <p><b>Тип объекта:</b> {{ object.get_obj_type_display }}</p>
+        <p><b>Состояние объекта:</b> {{ object.get_condition_display }}</p>
+        <p><b>Площадь объекта:</b> {{ object.area }}</p>
+        <p><b>Собственник:</b> {{ object.owner }}</p>
+        <p><b>Фактический пользователь:</b> {{ object.current_holder }}</p>
+        <p><b>Фото/видео:</b> {{ object.media_files }}</p>
+    </div>
+</div>
 
 <form method="POST">
     {% csrf_token %}
-    <input type="submit" value="подтвердить">
+    <input class="btn btn-danger" type="submit" value="Удалить">
+    <a class="btn btn-secondary" href="{% url 'object_details' object.id %}">Оставить</a>
 </form>
+
+{% endblock content %}
