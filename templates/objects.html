@@ -26,11 +26,11 @@
             {% for obj in objects %}
             <tr>
                 <td><a href="{% url 'object_details' obj.id %}"> {{ obj.pk }} </a></td>
-                <td>{{ obj.division }}</td>
-                <td>{{ obj.district }}</td>
+                <td>{{ obj.get_division_display }}</td>
+                <td>{{ obj.get_district_display }}</td>
                 <td>{{ obj.address }}</td>
-                <td>{{ obj.obj_type }}</td>
-                <td>{{ obj.condition }}</td>
+                <td>{{ obj.get_obj_type_display }}</td>
+                <td>{{ obj.get_condition_display }}</td>
                 <td>{{ obj.area }}</td>
                 <td>{{ obj.owner }}</td>
                 <td>{{ obj.current_holder }}</td>

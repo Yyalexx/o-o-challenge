@@ -7,11 +7,11 @@
 <body>
     <h2>Карточка объекта</h2>
     <p>{{ object.pk }}</p>
-    <p>{{ object.division }}</p>
-    <p>{{ object.district }}</p>
+    <p>{{ object.get_division_display }}</p>
+    <p>{{ object.get_district_display }}</p>
     <p>{{ object.address }}</p>
-    <p>{{ object.obj_type }}</p>
-    <p>{{ object.condition }}</p>
+    <p>{{ object.get_obj_type_display }}</p>
+    <p>{{ object.get_condition_display }}</p>
     <p>{{ object.area }}</p>
     <p>{{ object.owner }}</p>
     <p>{{ object.current_holder }}</p>
