@@ -7,7 +7,7 @@
 {% block content %}
     <h2>Список объектов</h2>
     <h3>(всего объектов: {{ objects|length }})</h3>
-    <table class="table table-striped">
+    <table class="table table-sm table-striped table-hover ">
         <thead>
             <tr>
                 <th>ID объекта</th>
@@ -39,6 +39,6 @@
             {% endfor %}
         </tbody>
     </table>
-    <a class="nav-link" href="{% url 'object_create' %}">Новая карточка объекта</a>
-    <a class="nav-link" href="{% url 'search' %}">Поиск объектов</a>
+    <!-- <a class="nav-link" href="{% url 'object_create' %}">Новая карточка объекта</a>
+    <a class="nav-link" href="{% url 'search' %}">Поиск объектов</a> -->
 {% endblock content %}

@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
+{% block title %}
+Поиск объектов
+{% endblock title %}
+
+
+{% block content %}
     <h1>Поиск объектов</h1>
-
+    <h6>заполните одно или несколько полей для поиска</h6>
     <form method='GET'>
         {{ filter.form }}
         <!-- {% for field in filter.form %}
@@ -21,9 +19,9 @@
             {% endif %}
         </div>
         {% endfor %} -->
-        <input type='submit' value='Найти'>
+        <input class="btn btn-primary" type='submit' value='Найти'>
     </form>
-    <table>
+    <table class="table table-sm table-striped table-hover ">
     
         <thead>
             <th>ID объекта</th>
@@ -54,7 +52,7 @@
         {% endfor %}
     </table>
     <a class="nav-link" href="{% url 'objects_list' %}">все объекты</a>
-</body>
-</html>
+
+{% endblock content %}
 
 

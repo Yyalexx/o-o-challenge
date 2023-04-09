@@ -1,28 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+{% extends 'base.html' %}
 
-        <style>
-            .myfield {
-                border: 3px solid #8d1a1a;
-                border-radius: 5px;
-                height: 25px;
-                width: 200px;
-                margin: 10px 10px 10px 0;
-            }
-        </style>
+{% block title %}
+Создание/изменение объекта
+{% endblock title %}
 
-</head>
-<body>
+{% block content %}
     <h1>Создание/изменение объекта</h1>
-    <form method="POST">
+    <form class="d-flex flex-column align-items-start" method="POST">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="Готово">
+        <input class="btn btn-primary mt-3" type="submit" value="Готово">
     </form>
-</body>
-</html>
+{% endblock content %}
