@@ -9,7 +9,9 @@
 <h2>Карточка объекта №{{ object.pk }}</h2>
 
 <a class="btn btn-primary" href="{% url 'object_update' object.id %}">Редактировать</a>
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delModal">Удалить</button>
+<a href="{% url 'object_delete' object.id %}">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delModal">Удалить</button>
+</a>
 
 <h3>Основная информация</h3>
 <div class="row mt-3">

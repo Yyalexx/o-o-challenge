@@ -45,7 +45,7 @@ class ObjectUpdate(UpdateView):
 class ObjectDelete(DeleteView):
     template_name = 'object_delete.html'
     queryset = EstateObject.objects.all()
-    success_url = reverse_lazy('objects_list')
+    success_url = f'{settings.SITE_URL}/estate_objects/'
 
 
 class ObjectSearch(ListView):
