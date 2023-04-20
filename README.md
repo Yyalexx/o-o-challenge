@@ -2,7 +2,7 @@
 ## Основная задача хакатона:  
 Разработка цифрового помощника по учету объектов недвижимости  
 ## Состав команды:  
-  - Юлия Ермолович  
+  - [Юлия Ермолович](https://www.behance.net/makeevajulija)  
   - [Артём Жогло](https://github.com/ZhArtem)  
   - [Мария Сафина](https://github.com/mariesafin)  
   - [Семён Сорокин](https://github.com/SimonLen)  
